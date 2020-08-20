@@ -302,7 +302,7 @@ ps ax | grep $$ | awk '{ print $2 }' #get current tty
 sudo apt-get install cuetools shntool flac
 cuebreakpoints sample.cue | shnsplit -o flac sample.flac
 
-#NETWORK MONITORING & STATISTICS TOOLS
+#NETWORK MONITORING & STATISTICS TOOLS(init)
 sudo /etc/init.d/network-manager restart
 				 start
 				 stop
@@ -598,7 +598,6 @@ adb shell
 +
 su
 
-
 #Xfce 4 Window Manager Keyboard Shortcuts
 Alt + F4	#Close window
 Alt + F5	#Maximize window
@@ -626,13 +625,12 @@ Alt + Ctrl + Delete	#Lock the screen
 
 #MJPG streamer
 ./mjpg_streamer -i "./input_uvc.so -d /dev/video1 -f 30 -r 1280x720" -o "./output_http.so -w ./www"
-# cd mjpg-streamer
-# make clean all
-or
-#make USE_LIBV4L2=true clean all
-#sudo make DESTDIR=/usr install
-# export LD_LIBRARY_PATH=.
-# ./mjpg_streamer -o "output_http.so -w ./www"
+cd mjpg-streamer
+make clean all
+make USE_LIBV4L2=true clean all
+sudo make DESTDIR=/usr install
+export LD_LIBRARY_PATH=.
+./mjpg_streamer -o "output_http.so -w ./www"
 sudo fswebcam --verbose #Test If cameras are streaming
 
 #VirtualBox
@@ -642,39 +640,23 @@ VBoxManage sharedfolder add "kubuntu" --name "share" --hostpath "/home/jsavely/s
 watch -n 0.1  time date -R
 
 #bash Shortcuts
-#	CTRL-A	Перемещение курсора в начало строки
-#	CTRL-E	Перемещение курсора в конец строки
-#	CTRL-R	Поиск по истории
-#	CTRL-W	Вырезать последнее слово
-#	CTRL-U	Вырезать всё до курсора
-#	CTRL-K	Вырезать всё после курсора
-#	CTRL-Y	Вернуть последнюю вырезанную строку
-#	CTRL-_	Отмена
-#	CTRL-L	Очистка экрана терминала
-
+	CTRL-A	Перемещение курсора в начало строки
+	CTRL-E	Перемещение курсора в конец строки
+	CTRL-R	Поиск по истории
+	CTRL-W	Вырезать последнее слово
+	CTRL-U	Вырезать всё до курсора
+	CTRL-K	Вырезать всё после курсора
+	CTRL-Y	Вернуть последнюю вырезанную строку
+	CTRL-_	Отмена
+	CTRL-L	Очистка экрана терминала
 
 #find
-
 find . -name tecmint.txt ./tecmint.txt # Find all the files whose name is tecmint.txt in a current working directory.
-
 find /home -name tecmint.txt #Find all the files under /home directory with name tecmint.txt.
-/home/tecmint.txt
-
 find /home -iname tecmint.txt #Find all the files whose name is tecmint.txt and contains both capital and small letters in /home directory.
-./tecmint.txt
-./Tecmint.txt
-
 find / -type d -name Tecmint #Find all directories whose name is Tecmint in / directory.
-/Tecmint
-
 find . -type f -name tecmint.php #Find all php files whose name is tecmint.php in a current working directory.
-./tecmint.php
-
 find . -type f -name "*.php" #Find all php files in a directory.
-./tecmint.php
-./login.php
-./index.php
-
 find . -type f -perm 0777 -print #Find all the files whose permissions are 777.
 find / -type f ! -perm 777 #Find all the files without permission 777.
 find / -perm 2644 #Find all the SGID bit files whose permissions set to 644.
@@ -789,235 +771,130 @@ man 7 signal #all about kill signal numbers
 #Initialize the local directory as a Git repository.
 
 git init #Add the files in your new local repository. This stages them for the first commit.
-
 git add . # Adds the files in the local repository and stages them for commit. To unstage a file, use 'git reset HEAD YOUR-FILE'.
-
 git commit -m "First commit" #Commit the files that you've staged in your local repository.
 # Commits the tracked changes and prepares them to be pushed to a remote repository. To remove this commit and modify the file, use 'git reset --soft HEAD~1' and commit and add the file again.
 #Copy remote repository URL fieldAt the top of your GitHub repository's Quick Setup page,
 #click to copy the remote repository URL.
 #In Terminal, add the URL for the remote repository where your local repository will be pushed.
 git remote add origin http://URL #Sets the new remote
-
 git remote -v #Verifies the new remote URL #Push the changes in your local repository to GitHub.
-
 git push origin master # Pushes the changes in your local repository up to the remote repository you specified as the origin
-
 git config --list # lists your user settings username and email
-
 git config user.name # shows my username
-
-1. git config --global user.name "Derek Banas"
-
-2. git config --global user.email derekbanas@verizon.net
-
-3. git config --global core.editor "vim" # Set editor as vim
-
-4. git config --global core.editor "edit -w" # Set editor as Text Wrangler Mac
-
-5. git config --list # Show settings
-
-6. git help OR git help [COMMAND] OR git help add
-
-#7. ---------------- Track a directory ----------------
-
-a. Go to directory
-
-b. ls -a shows all files
-
-c. git init # Creates the .git directory
-
-8. ---------------- Start tracking files ----------------
-
-a. By type : git add *.java
-
-b. By name : git add AndroidManifest.xml
-
-9. ---------------- Ignore Files ----------------
-
-a. Create a .gitignore file
-
-b. https://github.com/github/gitignore
-
-10. ---------------- git commit -m 'Initial project version'
-
-a. Commits the changes and sets an abbreviated commit message
-
-11. ---------------- git status ----------------
-
-a. Shows the state of your files meaning if they are tracked, have been modified and the branch your on.
-
-12. ---------------- Stage A Modified File ----------------
-
-a. Change the file and save
-
-b. git diff # Shows what you changed, but haven't staged
-
-c. git add AndroidManifest.xml # Stage file
-
-d. git diff --cached # Shows what has been staged, but not committed
-
-13. ---------------- Commit The Changes ----------------
-
-a. commit # Opens the editor we defined above or vi
-
-b. In vi click [ESC] i to enter insert mode
-
-c. Type a heading that briefly explains the changes in 50 characters or less
-
-d. Describes the original problem that is being addressed
-
-e. Describes the specific change being made
-
-f. Describes the result of the change
-
-g. Describes any future improvements
-
-h. Post a closes bug notation Closes-Bug: #1291621
-
-i. Hit [ESC] and type wq to save and exit
-
-j. git commit -a -m 'Changed comment' # Skips staging and commit message
-
-14. ---------------- Remove a File ----------------
-
-a. rm DeleteMe.txt # If you remove a file it shows as "Changed but not updated"
-
-b. git status # If you remove a file it shows as "Changed but not updated"
-
-c. git rm DeleteMe.txt
-
-d. git status # Shows that the file was deleted
-
-e. If you have committed a file to be removed you must add the -f option
-
-f. git rm --cached DeleteMe.txt # Keep file, but remove from staging area
-
-g. git mv DeleteMe.txt Delete.txt # Renames a file
-
-15. ---------------- Log Commit History  ----------------
-
-a. git log # Shows all of the previous commit messages in reverse order
-
-b. git log --pretty=oneline # Shows commits on one line
-
-c. git log --pretty=format:"%h : %an : %ar : %s"
-
+git config --global user.name "User Name"
+git config --global user.email derekbanas@verizon.net
+git config --global core.editor "vim" # Set editor as vim
+git config --global core.editor "edit -w" # Set editor as Text Wrangler Mac
+git config --list # Show settings
+git help OR git help [COMMAND] OR git help add
+git diff # Shows what you changed, but haven't staged
+git add AndroidManifest.xml # Stage file
+git diff --cached # Shows what has been staged, but not committed
+#Remove a File 
+rm DeleteMe.txt # If you remove a file it shows as "Changed but not updated"
+git status # If you remove a file it shows as "Changed but not updated"
+git rm DeleteMe.txt
+git status # Shows that the file was deleted
+#If you have committed a file to be removed you must add the -f option
+git rm --cached DeleteMe.txt # Keep file, but remove from staging area
+git mv DeleteMe.txt Delete.txt # Renames a file
+#Log Commit History
+git log # Shows all of the previous commit messages in reverse order
+git log --pretty=oneline # Shows commits on one line
+git log --pretty=format:"%h : %an : %ar : %s"
 I. %h - Abbreviated Hash
-
 II. %an - Authors Name
-
 III. %ar - Date Changed
-
 IV. %s - First Line of Comment
-
-d. git log -p -2 # Shows the last 2 commit changes
-
-e. git log --stat # Prints abbreviated stats
-
-f. git log --since=1.weeks # Show only changes in the last week
-
-g. git log --since="2014-04-12" # Show changes since this date
-
-h. git log --author="Derek Banas" # Changes made by author
-
-i. git log --before="2014-04-13" # Changes made before this date
-
-  git log --pretty=oneline # !!!very useful
-
-16. ---------------- Undoing a Commit ----------------
-
+git log -p -2 # Shows the last 2 commit changes
+git log --stat # Prints abbreviated stats
+git log --since=1.weeks # Show only changes in the last week
+git log --since="2014-04-12" # Show changes since this date
+git log --author="Derek Banas" # Changes made by author
+git log --before="2014-04-13" # Changes made before this date
+git log --pretty=oneline # !!!very useful
+#Undoing a Commit
 a. git commit --amend # If you want to change your previous commit
-
 b. Normally done if you forgot to stage a file, or to change the commit message
-
-
-3. Cloning a repository
+#3. Cloning a repository
 git clone <remote url>
 git fetch --all
 git pull --all
-
-4. Create and delete branches
-To create your branch:
+#4. Create and delete branches
+#To create your branch:
 git pull --rebase
 git checkout -b <branchName>
-To push a local git branch to remote:
+#To push a local git branch to remote:
 git push -u origin <branch-name>
-To delete a local branch:
+#To delete a local branch:
 git branch -d <branch-name>
-To delete a remote branch:
+#To delete a remote branch:
 git push origin --delete <branch-name>
-
-5. Stash and restore changes
-How to stash changes in git:
-git stash //Save all local changes
+#5. Stash and restore changes
+#How to stash changes in git:
+git stash #Save all local changes
 git stash --patch //Save a specific file via interactive patch mode
-How to restore stashed changes:
-git apply //Preserve changes in the stack
-git stash pop //Discard changes from the stack.
-
-6. Reset a branch to the remote
-Confirm local changes:
+#How to restore stashed changes:
+git apply #Preserve changes in the stack
+git stash pop #Discard changes from the stack.
+#6. Reset a branch to the remote
+#Confirm local changes:
 git status
-Reset to the latest commit on remote / upstream:
+#Reset to the latest commit on remote / upstream:
 git reset --hard HEAD
-
-7. Tag
-To create a lightweight tag:
-A lightweight tag is very much like a branch that doesn’t change — it’s just a pointer to a specific commit.
+#7. Tag
+#To create a lightweight tag:
+#A lightweight tag is very much like a branch that doesn’t change — it’s just a pointer to a specific commit.
 git tag <tag-name>
-To create an annotated tag:
-Annotated tags, however, are stored as full objects in the Git database. They’re checksummed; contain the tagger name, email, and date; have a tagging message. You can see the tag data along with the commit that was tagged by using the git show command.
+#To create an annotated tag:
 git tag -a <tag-name> -m "tagging-message"
-To push local tags to remote:
+#To push local tags to remote:
 git push origin <tag-name>
-If you have a lot of tags that you want to push up at once, you can also use:
+#If you have a lot of tags that you want to push up at once, you can also use:
 git push --tags
-Another options, links local and remote tags:
+#Another options, links local and remote tags:
 git push --follow-tags
-Tagging later:
+#Tagging later:
 git tag -a <tag-name> <commit-id>
-To delete a local tag:
+#To delete a local tag:
 git tag -d <tag-name>
-To delete a remote tag:
+#To delete a remote tag:
 git tag -d <tag-name>
 git push -d origin <tag-name>
-
-8. Removing the last commit
-To remove the last commit:
+#8. Removing the last commit
+#To remove the last commit:
 git reset --hard HEAD^
-Removing multiple commits from the top:
-You can increase the number to remove even more commits.
+#Removing multiple commits from the top:
+#You can increase the number to remove even more commits.
 git reset --hard HEAD~2 //remove the last two commits.
-To update changes in remote:
+#To update changes in remote:
 git push origin -f <branch-name>
-
-9. Reworking the last commit
-To perform significant work on the last commit:
+#9. Reworking the last commit
+#To perform significant work on the last commit:
 git reset HEAD^
-
-10. Updating the last commit message
-Commit has not been pushed:
+#10. Updating the last commit message
+#Commit has not been pushed:
 git commit --amend
-Commit has been pushed:
-git commit --amend(дополнен)
+#Commit has been pushed:
+#git commit --amend(дополнен)
 git push origin -f <branch-name>
-
-11. Rebase
-Standard rebasing:
-Automatically take the commits in your current working branch and apply them to the head of the passed branch.
+#11. Rebase
+#Standard rebasing:
+#Automatically take the commits in your current working branch and apply them to the head of the passed branch.
 git rebase
-Interactive rebasing:
+#Interactive rebasing:
 git rebase --i
-This opens an editor where you can enter commands (described below) for each commit to be rebased. These commands determine how individual commits will be transferred to the new base. You can also reorder the commit listing to change the order of the commits themselves. Once you’ve specified commands for each commit in the rebase, Git will begin playing back commits applying the rebase commands. The rebasing edit commands are as follows:
-
+#This opens an editor where you can enter commands (described below) for each commit to be rebased. 
+#These commands determine how individual commits will be transferred to the new base. 
+#You can also reorder the commit listing to change the order of the commits themselves. 
+#Once you’ve specified commands for each commit in the rebase, Git will begin playing back commits applying the rebase commands. The rebasing edit commands are as follows:
+git rebase -i HEAD^^ #step back one commit
+git rebase -i baf8d5e7da9e41fcd37d63ae9483ee0b10bfac8e^ #second way  to do the same
+git log --pretty=format:"%H [%cd]: %an - %s" --graph --date=format:%c  #beutification for git log
 ==================================================================================
 ls # список файлов и каталогов
 ls -al # форматированный список со скрытыми каталогами и файлами
-cd dirName # сменить директорию на dirName
-cd # сменить на домашний каталог
-pwd # показать текущий каталог
-mkdir dirName # создать каталог dirName
 rm file # удалить file
 rm -r dirName # удалить каталог dirName
 rm -f file # удалить форсированно file
@@ -1032,28 +909,21 @@ more file # вывести содержимое file
 head file # вывести первые 10 строк file
 tail file # вывести последние 10 строк file
 tail -f file # вывести содержимое file по мере роста, начинает с последних 10 строк
-Управление процессами
-ps # вывести ваши текущие активные процессы
-top # показать все запущенные процессы
+#Управление процессами
 kill pid # убить процесс с id pid
 killall proc # убить все процессы с именем proc *
 bg # список остановленных и фоновых задач; продолжить выполнение остановленной задачи в фоне
 fg # выносит на передний план последние задачи
 fg n # вынести задачу n на передний план
-Права доступа на файлы
-chmod octal file # сменить права file на octal, раздельно для пользователя, группы и для всех добавлением:
-● 4 # чтение (r)
-● 2 # запись (w)
-● 1 # исполнение (x)
-Примеры:
+#Примеры:
 chmod 777 # чтение, запись, исполнение для всех
 chmod 755 # rwx для владельца, rx для группы и остальных.
-Дополнительные опции: man chmod.
-SSH
+#Дополнительные опции: man chmod.
+#SSH
 ssh user@host # подключится к host как user
 ssh -p port user@host # подключится к host на порт port как user
 ssh-copy-id user@host # добавить ваш ключ на host для user чтобы включить логин без пароля и по ключам
-Поиск
+#Поиск
 grep pattern files # искать pattern в files
 grep -r pattern dirName # искать рекурсивно pattern в dirName
 command | grep pattern # искать pattern в выводе command
@@ -1104,11 +974,8 @@ Ctrl+W # удалить одно слово в текущей строке
 Ctrl+U # удалить строку
 !! - повторить последнюю команду
 exit # разлогиниться
-
 echo "nameserver 1.1.1.1" > /etc/resolv.conf #set my dns server
-
 #nano
-
 На слово вперёд — Ctrl-Space
 На слово назад — Alt-Space (курсор встаёт в начале слова)
 В начало файла — Alt-| или Alt-\ (короче, Alt- и «эта» кнопка)
@@ -1116,34 +983,26 @@ echo "nameserver 1.1.1.1" > /etc/resolv.conf #set my dns server
 До первой пустой строки вниз — Alt-0 (или Alt-))
 До первой пустой строки вверх — Alt-9 (или Alt-()
 (в терминах nano текст, отделённый пустыми строками называется «параграф», так что последние две команды называются «предыдущий параграф», «следующий параграф»)
-
 Включить выключить перенос строк — Alt-L
 Переход на строку с указанным номером — Alt-G
-
 Ctrl+G или F1 - Показать эту справку
 Ctrl+X или F2 - Закрыть текущий буфер / Выйти из nano
 Ctrl+O или F3 - Записать текущий файл на диск
 Ctrl+J или F4 - Выровнять текущий абзац
-
 Ctrl+R или F5 - Вставить другой файл в текущий
 Ctrl+W или F6 - Искать текст или регулярное выражение
 Ctrl+Y или F7 - Перейти на предыдущий экран
 Ctrl+V или F8 - Перейти на следующий экран
-
 Ctrl+U или F10 - Вставить содержимое буфера обмена в текущую строку
 Ctrl+C или F11 - Показать положение курсора
 Ctrl+T или F12 - Проверить орфографию, если доступно
 Ctrl+K или F9 - Вырезать текущую строку и сохранить её в буфере обмена
-
-
 m+\ или m+| - На первую строку файла
 m+/ или m+? - На последнюю строку файла
-
 Ctrl+_ или m+G - Перейти на указанный номер строки и ряд
 Ctrl+\ или m+R - Заменить текст или регулярное выражение
 Ctrl+^ или m+Alt - Отметить текст в текущей позиции курсора
 m+W - Повторить последний поиск
-
 m+^ или m+6 - Копировать текущую строку и сохранить ее в буфере обмена
 m+} - Увеличить отступ строки
 m+{ - Уменьшить отступ строки
@@ -1153,7 +1012,6 @@ Ctrl+Space - Вперёд на одно слово
 m+Space - Назад на одно слово
 Ctrl+P - На предыдущую строку
 Ctrl+N - На следующую строку
-
 Ctrl+Alt - На начало текущей строки
 Ctrl+E - В конец текущей строки
 m+( или m+9 - На начало текущего абзаца; потом следующего абзаца
@@ -1163,14 +1021,12 @@ m+− или m+_ - Прокрутить одну строку вверх, не �
 m++ или m+= - Прокрутить одну строку вниз, не перемещая курсор
 m+< или m+, - Переключить на предыдущий буфер
 m+> или m+. - Переключить на следующий буфер
-
 m+V - Вставить следующую комбинацию клавиш как есть
 Ctrl+I - Вставить табуляцию в позиции курсора
 Ctrl+M - Вставить строку в позиции курсора
 Ctrl+D - Удалить символ под курсором
 Ctrl+H - Удалить символ слева от курсора
 m+T - Вырезать с текущей позиции до конца файла
-
 m+J - Выровнять весь файл
 m+D - Подсчитать количество слов, строк и символов
 Ctrl+L - Обновить текущий экран
@@ -1203,9 +1059,6 @@ pgrep -lvu root #all processes that do not belong to root
 pgrep -fl chrome #list all processes related to given
 pgrep -u root sshd #show all PID's of given process for given user
 pgrep -l dbus #find  PID's by a part of the name
-
-#man
-/-l #search through the man page
 
 #qemu
 qemu-img create -f qcow2 my-image.qcow2 10G
@@ -1260,21 +1113,15 @@ clamscan -r -i / & #scan all files but only display infected when found, run in 
 clamscan -r /home #check files in the all users home directories
 clamscan -r --move=/home/USER/VIRUS /home/USER #check files in  USER home dir, move infected to another folder
 
-
 ps aux | awk '{print $6/1024 " MB\t\t" $11}' | sort -n #find memorylicks
-
 wc !* #count words and lines for file that was prinviously opened
-
-git log --pretty=format:"%H [%cd]: %an - %s" --graph --date=format:%c  #beutification for git log
 #Android backup
 adb start-server
 adb devices
 cd /media/jsavely/Seagate/
 adb backup -apk -noshared -all -f backup-smartfon.adb
-
 gpg -c fizzBuzz.txt #encrypt file
 gpg fizzBuzz.txt.gpg #decrypt file
-
 dd if=kali-linux-2017.1-amd64.iso of=/dev/sdb bs=512k #create kali liveISO
 file t8rm.sh #shows info about file
 
@@ -1282,9 +1129,6 @@ file t8rm.sh #shows info about file
 sudo apt-get install postgresql postgresql-contrib
 sudo -i -u postgres
 psql
-
-git rebase -i HEAD^^ #step back one commit
-git rebase -i baf8d5e7da9e41fcd37d63ae9483ee0b10bfac8e^ #second way  to do the same
 
 mtr google.com #ping+traceroute+watch in one
 dpkg --list | grep linux-image #show all kernels
@@ -1306,231 +1150,79 @@ systemctl list-units #list all runned units by systemd
 ldd /bin/ls  #list all the libs that binary uses
 id #shows info about current user
 stat #shows statistic about file
-
-file file.txt #info about file
 iperf3 -c iperf.donapex.net -R #testing network speed -R is a reverse mode
-
-1 – SYSTEM INFORMATION
-
-# Display Linux system information
-uname -a
-
-# Display kernel release information
-uname -r
-
-# Show which version of redhat installed
-cat /etc/redhat-release
-
-# Show how long the system has been running + load
-uptime
-
-# Show system host name
-hostname
-
-# Display the IP addresses of the host
-hostname -I
-
-# Show system reboot history
-last reboot
-
-# Show the current date and time
-date
-
-# Show this month's calendar
-cal
-
-# Display who is online
-w
-
-# Who you are logged in as
-whoami
-
-2 – HARDWARE INFORMATION
-
-# Display messages in kernel ring buffer
-dmesg
-
-# Display CPU information
-cat /proc/cpuinfo
-
-# Display memory information
-cat /proc/meminfo
-
-# Display free and used memory ( -h for human readable, -m for MB, -g for GB.)
-free -h
-
-# Display PCI devices
-lspci -tv
-
-# Display USB devices
-lsusb -tv
-
-# Display DMI/SMBIOS (hardware info) from the BIOS
-dmidecode
-
-# Show info about disk sda
-hdparm -i /dev/sda
-
-# Perform a read speed test on disk sda
-hdparm -tT /dev/sda
-
-# Test for unreadable blocks on disk sda
-badblocks -s /dev/sda
-
-3 – PERFORMANCE MONITORING AND STATISTICS
-
-# Display and manage the top processes
-top
-
-# Interactive process viewer (top alternative)
-htop
-
-# Display processor related statistics
-mpstat 1
-
-# Display virtual memory statistics
-vmstat 1
-
-# Display I/O statistics
-iostat 1
-
-# Display the last 100 syslog messages  (Use /var/log/syslog for Debian based systems.)
-tail 100 /var/log/messages
-
-# Capture and display all packets on interface eth0
-tcpdump -i eth0
-
-# Monitor all traffic on port 80 ( HTTP )
-tcpdump -i eth0 'port 80'
-
-# List all open files on the system
-lsof
-
-# List files opened by user
-lsof -u user
-
-# Display free and used memory ( -h for human readable, -m for MB, -g for GB.)
-free -h
-
-# Execute "df -h", showing periodic updates
-watch df -h
-
-4 – USER INFORMATION AND MANAGEMENT
-
+#4 – USER INFORMATION AND MANAGEMENT
 # Display the user and group ids of your current user.
 id
-
 # Display the last users who have logged onto the system.
 last
-
 # Show who is logged into the system.
 who
-
 # Show who is logged in and what they are doing.
 w
-
 # Create a group named "test".
 groupadd test
-
 # Create an account named john, with a comment of "John Smith" and create the user's home directory.
 useradd -c "John Smith" -m john
-
 # Delete the john account.
 userdel john
-
 # Add the john account to the sales group
 usermod -aG sales john
-
-5 – FILE AND DIRECTORY COMMANDS
-
+#5 – FILE AND DIRECTORY COMMANDS
 # List all files in a long listing (detailed) format
 ls -al
-
 # Display the present working directory
 pwd
-
 # Create a directory
 mkdir directory
-
 # Remove (delete) file
 rm file
-
 # Remove the directory and its contents recursively
 rm -r directory
-
 # Force removal of file without prompting for confirmation
 rm -f file
-
 # Forcefully remove directory recursively
 rm -rf directory
-
 # Copy file1 to file2
 cp file1 file2
-
 # Copy source_directory recursively to destination. If destination exists, copy source_directory into destination, otherwise create destination with the contents of source_directory.
 cp -r source_directory destination
-
 # Rename or move file1 to file2. If file2 is an existing directory, move file1 into directory file2
 mv file1 file2
-
 # Create symbolic link to linkname
 ln -s /path/to/file linkname
-
 # Create an empty file or update the access and modification times of file.
 touch file
-
 # View the contents of file
 cat file
-
 # Browse through a text file
 less file
-
 # Display the first 10 lines of file
 head file
-
 # Display the last 10 lines of file
 tail file
-
 # Display the last 10 lines of file and "follow" the file as it grows.
 tail -f file
-
-6 – PROCESS MANAGEMENT
-
+#6 – PROCESS MANAGEMENT
 # Display your currently running processes
 ps
-
 # Display all the currently running processes on the system.
 ps -ef
-
 # Display process information for processname
 ps -ef | grep processname
-
 # Display and manage the top processes
 top
-
 # Interactive process viewer (top alternative)
 htop
-
 # Kill process with process ID of pid
 kill pid
-
 # Kill all processes named processname
 killall processname
-
 # Start program in the background
 program &
-
-# Display stopped or background jobs
-bg
-
-# Brings the most recent background job to foreground
-fg
-
 # Brings job n to the foreground
 fg n
-
-7 – FILE PERMISSIONS
-
+#7 – FILE PERMISSIONS
 Linux chmod example
         PERMISSION      EXAMPLE
 
@@ -1553,145 +1245,97 @@ Linux chmod example
         x = execute
         - = no access
 
-8 – NETWORKING
-
+#8 – NETWORKING
 # Display all network interfaces and ip address
 ifconfig -a
-
 # Display eth0 address and details
 ifconfig eth0
-
 # Query or control network driver and hardware settings
 ethtool eth0
-
 # Send ICMP echo request to host
 ping host
-
 # Display whois information for domain
 whois domain
-
 # Display DNS information for domain
 dig domain
-
 # Reverse lookup of IP_ADDRESS
 dig -x IP_ADDRESS
-
 # Display DNS ip address for domain
 host domain
-
 # Display the network address of the host name.
 hostname -i
-
 # Display all local ip addresses
 hostname -I
-
 # Download http://domain.com/file
 wget http://domain.com/file
-
 # Display listening tcp and udp ports and corresponding programs
 netstat -nutlp
-
-
-9 – ARCHIVES (TAR FILES)
-
+#9 – ARCHIVES (TAR FILES)
 # Create tar named archive.tar containing directory.
 tar cf archive.tar directory
-
 # Extract the contents from archive.tar.
 tar xf archive.tar
-
 # Create a gzip compressed tar file name archive.tar.gz.
 tar czf archive.tar.gz directory
-
 # Extract a gzip compressed tar file.
 tar xzf archive.tar.gz
-
 # Create a tar file with bzip2 compression
 tar cjf archive.tar.bz2 directory
-
 # Extract a bzip2 compressed tar file.
 tar xjf archive.tar.bz2
-
-10 – INSTALLING PACKAGES
-
+#10 – INSTALLING PACKAGES
 # Search for a package by keyword.
 yum search keyword
-
 # Install package.
 yum install package
-
 # Display description and summary information about package.
 yum info package
-
 # Install package from local file named package.rpm
 rpm -i package.rpm
-
 # Remove/uninstall package.
 yum remove package
-
 # Install software from source code.
 tar zxvf sourcecode.tar.gz
 cd sourcecode
 ./configure
 make
 make install
-
-11 – SEARCH
-
+#11 – SEARCH
 # Search for pattern in file
 grep pattern file
-
 # Search recursively for pattern in directory
 grep -r pattern directory
-
 # Find files and directories by name
 locate name
-
 # Find files in /home/john that start with "prefix".
 find /home/john -name 'prefix*'
-
 # Find files larger than 100MB in /home
 find /home -size +100M
-
-12 – SSH LOGINS
-
+#12 – SSH LOGINS
 # Connect to host as your local username.
 ssh host
-
 # Connect to host as user
 ssh user@host
-
 # Connect to host using port
 ssh -p port user@host
-
-13 – FILE TRANSFERS
-
+#13 – FILE TRANSFERS
 # Secure copy file.txt to the /tmp folder on server
 scp file.txt server:/tmp
-
 # Copy *.html files from server to the local /tmp folder.
 scp server:/var/www/*.html /tmp
-
 # Copy all files and directories recursively from server to the current system's /tmp folder.
 scp -r server:/var/www /tmp
-
 # Synchronize /home to /backups/home
 rsync -a /home /backups/
-
 # Synchronize files/directories between the local and remote system with compression enabled
 rsync -avz /home server:/backups/
-
-14 – DISK USAGE
-
+#14 – DISK USAGE
 # Show free and used space on mounted filesystems
 df -h
-
-
 df -i # Show free and used inodes on mounted filesystems
 fdisk -l # Display disks partitions sizes and types
 du -ah # Display disk usage for all files and directories in human readable format
 du -sh # Display total disk usage off the current directory
-
 #lang summary
 sed - when you need to do simple text transforms on files.
 awk - when you only need simple formatting and summarization or transformation of data.
@@ -1704,7 +1348,6 @@ cd myapp
 flutter devices
 flutter run
 
-
 #Clear Swap Space 
 swapoff -a && swapon -a
 
@@ -1716,7 +1359,6 @@ source ~/.profile
 #VIM 
 :%s/serchWord/ReplaceWord #serch and replace
 :%s/serchWord/ReplaceWord/g #serch and replace globaly
-
 tabedit nameOfTheFile.txt #open in a new tab 
 
 #React Native
