@@ -28,9 +28,7 @@ lshw #command : List all hardware.
 dmidecode #command : List all hardware data from BIOS.
 ifconfig #command : Outdated network config utility.
 ip #command : Recommended new network config utility.
-
 modinfo 'lshw -c video | awk '/configuration: driver/{print $2}' | cut -d= -f2' #discover videodriver 
-
 dmesg -l err
 dmesg | tail -20
 watch "dmesg | tail -20"
@@ -46,7 +44,6 @@ sudo fdisk -l
 df -h #df is acronym Disk Free
 lsblk
 lsblk -o NAME,FSTYPE,LABEL,MOUNTPOINT,SIZE,MODEL #short 'by table' info on all drives
-
 df #without anything
 df -ah #procentage of used space
 df -k #memory usage
@@ -64,7 +61,6 @@ sudo dmidecode | grep -i speed
 #cron
 crontab -e #edit cron jobs
 /etc/crontab #location of crontab
-
 
 #ifup
 ifup eth0 #enable inteface
@@ -185,7 +181,6 @@ sudo debsums --changed
 sudo debsums apache2 #particular package check
 apt-get install --only-upgrade apache2 #only upgrade package
 sudo apt list --installed | grep -i bluetooth #list all packages related
-
 whereis packagename firefox #returns location of the installed file
 
 #CHROMIUM RUN
@@ -204,16 +199,13 @@ mkdir bin
 #encrypt file
 openssl enc -aes-256-cbc -in /home/jsavely/file1.txt -out /home/jsavely/file1.dat #encrypt
 openssl enc -aes-256-cbc -d -in /home/jsavely/file1.dat > /home/jsavely/file1.txt #decrypt
-zip --password t8rmos myfiles.zip file1.txt file2.txt file3.txt #cerates encrypded archive
+zip --password xxxxx myfiles.zip file1.txt file2.txt file3.txt #cerates encrypded archive
 unzip myfiles.zip # unzips after password
 
 sudo apt-get install ccrypt #unility for encryption
 ccrypt -e file #e for encrypt
 ccrypt -c file # like ccat, look through the file
-Enter decryption key:
-Hello world!
 ccrypt -d file.cpt # for decrypt
-Enter decryption key:
 
 #KILL PROCESS
 killall proc_name
@@ -223,12 +215,10 @@ kill -15  pid1 pid2 pid3
 kill -9  pid1 pid2 pid3
 kill  -9 3546 5557 4242
 
-
 #COPY\RIP ISO
 mkisofs -r -o file.iso /dev/dvd
 cat /dev/sr0 > image.iso
 cat /dev/scd0 > /home/jsavely/test.iso
-
 
 #GREP
 grep - #search for file or line in file by given templeate
@@ -255,7 +245,6 @@ sudo mount /dev/fd0 /mnt
 umount /mnt #unmount forom mnt
 umount -a #standing in the directory unmount all
 sudo mount -o remount,rw /partition/identifier /mount/point
-
 
 #FFMPG SETUP
 export PATH=$PATH:/home/opt/ffmpeg/bin
