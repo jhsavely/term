@@ -17,7 +17,6 @@ arch
 uname
 cat /var/log/dmesg
 cat /sys/class/net/eno1/address #get MAC addres for given interface
-lspci
 lsusb
 lsmod
 id #get user info
@@ -227,6 +226,7 @@ grep -r "myTempleate" #recursive search
 grep -c "myTempleate" #outputs count of templeates
 grep -i "myTempleate" #igrores register
 grep -oP '\S*\SEARCHED_WORD(?=\s|$)' file_name.txt #search through the file and find the pattern
+ccrypt -c regs.cpt |grep wordThatISearchFor  -A5 -B5 # +5 lines from above and below 
 
 #sed
 sed -i 's/:/?/g' HollandTest.txt #replace ALL : symbols to ? symbols within given file
@@ -773,7 +773,8 @@ man 7 signal #all about kill signal numbers
 git init #Add the files in your new local repository. This stages them for the first commit.
 git add . # Adds the files in the local repository and stages them for commit. To unstage a file, use 'git reset HEAD YOUR-FILE'.
 git commit -m "First commit" #Commit the files that you've staged in your local repository.
-# Commits the tracked changes and prepares them to be pushed to a remote repository. To remove this commit and modify the file, use 'git reset --soft HEAD~1' and commit and add the file again.
+# Commits the tracked changes and prepares them to be pushed to a remote repository.
+#To remove this commit and modify the file, use 'git reset --soft HEAD~1' and commit and add the file again.
 #Copy remote repository URL fieldAt the top of your GitHub repository's Quick Setup page,
 #click to copy the remote repository URL.
 #In Terminal, add the URL for the remote repository where your local repository will be pushed.
@@ -823,7 +824,6 @@ git fetch --all
 git pull --all
 #4. Create and delete branches
 #To create your branch:
-git pull --rebase
 git checkout -b <branchName>
 #To push a local git branch to remote:
 git push -u origin <branch-name>
@@ -893,7 +893,6 @@ git rebase -i HEAD^^ #step back one commit
 git rebase -i baf8d5e7da9e41fcd37d63ae9483ee0b10bfac8e^ #second way  to do the same
 git log --pretty=format:"%H [%cd]: %an - %s" --graph --date=format:%c  #beutification for git log
 ==================================================================================
-ls # список файлов и каталогов
 ls -al # форматированный список со скрытыми каталогами и файлами
 rm file # удалить file
 rm -r dirName # удалить каталог dirName
@@ -924,7 +923,6 @@ ssh user@host # подключится к host как user
 ssh -p port user@host # подключится к host на порт port как user
 ssh-copy-id user@host # добавить ваш ключ на host для user чтобы включить логин без пароля и по ключам
 #Поиск
-grep pattern files # искать pattern в files
 grep -r pattern dirName # искать рекурсивно pattern в dirName
 command | grep pattern # искать pattern в выводе command
 locate file # найти все файлы с именем file
@@ -1171,8 +1169,6 @@ usermod -aG sales john
 #5 – FILE AND DIRECTORY COMMANDS
 # List all files in a long listing (detailed) format
 ls -al
-# Display the present working directory
-pwd
 # Create a directory
 mkdir directory
 # Remove (delete) file
@@ -1301,8 +1297,6 @@ cd sourcecode
 make
 make install
 #11 – SEARCH
-# Search for pattern in file
-grep pattern file
 # Search recursively for pattern in directory
 grep -r pattern directory
 # Find files and directories by name
