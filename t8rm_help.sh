@@ -1,5 +1,7 @@
 #GETHER hardware info
 lscpu
+inxi #quick view of the system information
+inxi -G #list grephics drivers 
 lscpu | grep -i mhz
 lscpu | grep Endian #Little or Big Endian on CPU
 cat /proc/cpuinfo
@@ -761,15 +763,6 @@ md5sum -c /home/jsavely/etcCheck #check
 
 #signal - overview of signals
 man 7 signal #all about kill signal numbers
-
-
-#git basics
-#Create a new repository on GitHub. To avoid errors, do not initialize the new repository with README, license, or gitignore files.
-#You can add these files after your project has been pushed to GitHub.
-#Open Terminal.
-#Change the current working directory to your local project.
-#Initialize the local directory as a Git repository.
-
 git init #Add the files in your new local repository. This stages them for the first commit.
 git add . # Adds the files in the local repository and stages them for commit. To unstage a file, use 'git reset HEAD YOUR-FILE'.
 git commit -m "First commit" #Commit the files that you've staged in your local repository.
@@ -784,7 +777,7 @@ git push origin master # Pushes the changes in your local repository up to the r
 git config --list # lists your user settings username and email
 git config user.name # shows my username
 git config --global user.name "User Name"
-git config --global user.email derekbanas@verizon.net
+git config --global user.email anyMail@gmail.com
 git config --global core.editor "vim" # Set editor as vim
 git config --global core.editor "edit -w" # Set editor as Text Wrangler Mac
 git config --list # Show settings
@@ -792,6 +785,7 @@ git help OR git help [COMMAND] OR git help add
 git diff # Shows what you changed, but haven't staged
 git add AndroidManifest.xml # Stage file
 git diff --cached # Shows what has been staged, but not committed
+git log --oneline #show log compactly, oneline
 #Remove a File 
 rm DeleteMe.txt # If you remove a file it shows as "Changed but not updated"
 git status # If you remove a file it shows as "Changed but not updated"
@@ -816,8 +810,8 @@ git log --author="Derek Banas" # Changes made by author
 git log --before="2014-04-13" # Changes made before this date
 git log --pretty=oneline # !!!very useful
 #Undoing a Commit
-a. git commit --amend # If you want to change your previous commit
-b. Normally done if you forgot to stage a file, or to change the commit message
+#a. git commit --amend # If you want to change your previous commit
+#b. Normally done if you forgot to stage a file, or to change the commit message
 #3. Cloning a repository
 git clone <remote url>
 git fetch --all
@@ -892,7 +886,7 @@ git rebase --i
 git rebase -i HEAD^^ #step back one commit
 git rebase -i baf8d5e7da9e41fcd37d63ae9483ee0b10bfac8e^ #second way  to do the same
 git log --pretty=format:"%H [%cd]: %an - %s" --graph --date=format:%c  #beutification for git log
-==================================================================================
+#
 ls -al # форматированный список со скрытыми каталогами и файлами
 rm file # удалить file
 rm -r dirName # удалить каталог dirName
@@ -1350,10 +1344,10 @@ export PATH="$PATH:/home/jsavely/dart/dart-sdk/bin"
 echo 'export PATH="$PATH:/home/jsavely/dart/dart-sdk/bin"' >> ~/.profile
 source ~/.profile
 
-#VIM 
+#vim 
 :%s/serchWord/ReplaceWord #serch and replace
 :%s/serchWord/ReplaceWord/g #serch and replace globaly
 tabedit nameOfTheFile.txt #open in a new tab 
+:e %:h/myFileName #create new file from vim command line
 
-#React Native
 
