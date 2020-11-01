@@ -762,6 +762,9 @@ git diff # Shows what you changed, but haven't staged
 git add AndroidManifest.xml # Stage file
 git diff --cached # Shows what has been staged, but not committed
 git log --oneline #show log compactly, oneline
+git reflog #properly shows logs
+git reflog --no-decorate 
+
 #Remove a File 
 rm DeleteMe.txt # If you remove a file it shows as "Changed but not updated"
 git status # If you remove a file it shows as "Changed but not updated"
