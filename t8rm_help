@@ -764,8 +764,6 @@ git diff --cached # Shows what has been staged, but not committed
 git log --oneline #show log compactly, oneline
 git reflog #properly shows logs
 git reflog --no-decorate 
-
-#Remove a File 
 rm DeleteMe.txt # If you remove a file it shows as "Changed but not updated"
 git status # If you remove a file it shows as "Changed but not updated"
 git rm DeleteMe.txt
@@ -785,7 +783,7 @@ git log -p -2 # Shows the last 2 commit changes
 git log --stat # Prints abbreviated stats
 git log --since=1.weeks # Show only changes in the last week
 git log --since="2014-04-12" # Show changes since this date
-git log --author="Derek Banas" # Changes made by author
+git log --author="Johnny Machironi" # Changes made by author
 git log --before="2014-04-13" # Changes made before this date
 git log --pretty=oneline # !!!very useful
 #Undoing a Commit
@@ -865,7 +863,7 @@ git rebase --i
 git rebase -i HEAD^^ #step back one commit
 git rebase -i baf8d5e7da9e41fcd37d63ae9483ee0b10bfac8e^ #second way  to do the same
 git log --pretty=format:"%H [%cd]: %an - %s" --graph --date=format:%c  #beutification for git log
-#
+#notes
 ls -al # форматированный список со скрытыми каталогами и файлами
 rm file # удалить file
 rm -r dirName # удалить каталог dirName
@@ -899,7 +897,7 @@ ssh-copy-id user@host # добавить ваш ключ на host для user �
 grep -r pattern dirName # искать рекурсивно pattern в dirName
 command | grep pattern # искать pattern в выводе command
 locate file # найти все файлы с именем file
-Системная информация
+#Системная информация
 date # вывести текущую дату и время
 cal # вывести календарь на текущий месяц
 uptime # показать текущий аптайм
@@ -941,7 +939,6 @@ Ctrl+U # удалить строку
 exit # разлогиниться
 echo "nameserver 1.1.1.1" > /etc/resolv.conf #set my dns server
 nice -n18 nano fileOneTest.txt # run process with some level of privilage
-
 #pgrep
 pgrep -lvu root #all processes that do not belong to root
 pgrep -fl chrome #list all processes related to given
@@ -957,7 +954,7 @@ qemu-system-x86_64 my-image.qcow2 -m 2G -enable-kvm #if system was installed
 tar -cvf photos ~/photos #create archive
 tar -xvf tarfile #extract files
 
-#wget
+#random solutions
 wget --spider -S http://google.com #load page
 ls /home/jsavely/dumps |wc -l # count files in directory
 sudo chkrootki #check for rootkits
@@ -966,6 +963,19 @@ sed 's/^.\{5\}//g' docker_experement.txt #delete first 5 charachters at the begi
 hostname --ip-address #get ip address  without ifconfig
 rename 's/old-name/new-name/' files #rename multiple files [* if rename all]
 rename 's/\.html$/\.php/' *.html #rename all file by given extension
+ps aux | awk '{print $6/1024 " MB\t\t" $11}' | sort -n #find memorylicks
+wc !* #count words and lines for file that was prinviously opened
+mtr google.com #ping+traceroute+watch in one
+dpkg --list | grep linux-image #show all kernels
+netstat -anlp |grep 80 #who is listening on this port
+watch -n 0.1 "dmesg | tail -n $((LINES-6))" #watch kernel messages live
+sudo udevadm info -a -p /sys/class/net/eth0  #full info abut device, this case  network card
+systemctl list-units #list all runned units by systemd
+ldd /bin/ls  #list all the libs that binary uses
+id #shows info about current user
+stat #shows statistic about file
+iperf3 -c iperf.donapex.net -R #testing network speed -R is a reverse mode
+
 #dist upgrde ubuntu
 lsb_release -a #distro info
 sudo apt update
@@ -1001,8 +1011,6 @@ clamscan -r -i / & #scan all files but only display infected when found, run in 
 clamscan -r /home #check files in the all users home directories
 clamscan -r --move=/home/USER/VIRUS /home/USER #check files in  USER home dir, move infected to another folder
 
-ps aux | awk '{print $6/1024 " MB\t\t" $11}' | sort -n #find memorylicks
-wc !* #count words and lines for file that was prinviously opened
 #Android backup
 adb start-server
 adb devices
@@ -1018,9 +1026,6 @@ sudo apt-get install postgresql postgresql-contrib
 sudo -i -u postgres
 psql
 
-mtr google.com #ping+traceroute+watch in one
-dpkg --list | grep linux-image #show all kernels
-
 #installing atom text editor
 wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
 sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
@@ -1030,27 +1035,13 @@ sudo apt-get install atom
 #who logs into the system
 last jsavely
 last root
-
-netstat -anlp |grep 80 #who is listening on this port
-watch -n 0.1 "dmesg | tail -n $((LINES-6))" #watch kernel messages live
-sudo udevadm info -a -p /sys/class/net/eth0  #full info abut device, this case  network card
-systemctl list-units #list all runned units by systemd
-ldd /bin/ls  #list all the libs that binary uses
-id #shows info about current user
-stat #shows statistic about file
-iperf3 -c iperf.donapex.net -R #testing network speed -R is a reverse mode
-#4 – USER INFORMATION AND MANAGEMENT
-# Display the user and group ids of your current user.
-id
-# Display the last users who have logged onto the system.
-last
-# Show who is logged into the system.
-who
-# Show who is logged in and what they are doing.
-w
-# Create a group named "test".
+id #user and group ids of your current user.
+last #who have logged onto the system.
+who #Show who is logged into the system.
+w # Show who is logged in and what they are doing.
+ # Create a group named "test".
 groupadd test
-# Create an account named john, with a comment of "John Smith" and create the user's home directory.
+ # Create an account named john, with a comment of "John Smith" and create the user's home directory.
 useradd -c "John Smith" -m john
 # Delete the john account.
 userdel john
