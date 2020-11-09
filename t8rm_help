@@ -23,10 +23,10 @@ lsusb
 lsmod
 id #get user info
 xdpyinfo #get info about client display & graph server
-#SUMMARY
 lspci #command : List all PCI devices.
 lshw #command : List all hardware.
 dmidecode #command : List all hardware data from BIOS.
+sudo dmidecode | grep -i speed #RAM frequency?
 ifconfig #command : Outdated network config utility.
 ip #command : Recommended new network config utility.
 modinfo 'lshw -c video | awk '/configuration: driver/{print $2}' | cut -d= -f2' #discover videodriver 
@@ -56,8 +56,6 @@ sudo smartctl -a /dev/sda
 sudo badblocks -v /dev/sdb1
 sudo blkid
 
-#RAM frequency?
-sudo dmidecode | grep -i speed
 
 #cron
 crontab -e #edit cron jobs
@@ -67,12 +65,8 @@ crontab -e #edit cron jobs
 ifup eth0 #enable inteface
 ifdown eth0 #disable
 
-#/*
-#*The alias command makes it possible to launch any command or group of commands
-#*(inclusive of any options, arguments and redirection) by entering a pre-set string
-#*(i.e., sequence of characters).
-#*/
-gedit ~/.bashrc
+#The alias command makes it possible to launch any command or group of commands
+#(inclusive of any options, arguments and redirection) by entering a pre-set string
 alias shortname='sudo ping 192.168.1.100'
 alias [-p] [name="value"]
 -p option
@@ -192,10 +186,13 @@ env
 env | grep PATH
 PATH="/usr/local/exapmle_dir_name/arm/bin:$PATH"
 PATH=/usr/local/Trolltech/Qt-4.8.6/bin:$PATH
-export PATH
+export PATH #export keyword at the end of the hidden .bashrc file 
+export MYVAR=”xyz”
+env | grep MYVAR=
+printenv MYVAR
 echo $PATH
 export PATH=$PATH:directory
-mkdir bin
+source ~/.bashrc #to reload .bashrc file to enable the changes
 
 #encrypt file
 openssl enc -aes-256-cbc -in /home/jsavely/file1.txt -out /home/jsavely/file1.dat #encrypt
@@ -221,6 +218,8 @@ mkisofs -r -o file.iso /dev/dvd
 cat /dev/sr0 > image.iso
 cat /dev/scd0 > /home/jsavely/test.iso
 
+
+gedit ~/.bashrc
 #GREP
 grep - #search for file or line in file by given templeate
 grep "myTempleate"
@@ -243,7 +242,7 @@ aspell #dig theat command
 
 #MOUNT VOLUME
 sudo mount -o loop /media/jsavely/web/iso/kubuntu-15.04-desktop-amd64.iso  /media/iso #command as follows to mount iso file called disk1.iso
-sudo mount /dev/fd0 /mnt
+sudo mount /dev/X /media
 umount /mnt #unmount forom mnt
 umount -a #standing in the directory unmount all
 sudo mount -o remount,rw /partition/identifier /mount/point
@@ -264,9 +263,15 @@ chmod +x myFile.sh #make file executible
 chown owner-user file
 chown owner-user:owner-group file
 chown owner-user:owner-group directory
-chown options owner-user:owner-group file
-chown vivek demo.txt
 chown root /foo
+# u – user , g – group,  o – others ,  a – all
+# +  to add permission  ,  –  to remove permission ,  = to assign permission
+# r w x   is used for read , write,execute ,  s  is used to set the sticky bit
+chmod  ug+x fileName #assign execute permission to user and group in file
+chmod a+x  <fileName> #assign execute permission to all in file
+chmod o-x  <fileName>  #remove execute permission to others in file
+chmod go+r  <fileName>  #assign read permission to group & others in file
+chmod u+rwx ,g+rw,o+r  file #all in one
 
 #INSTALL/REINSTALL JDK MANUAL
 sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/java-7-openjdk-amd64/bin/java" 1
@@ -459,7 +464,7 @@ ls –l *.lock #list all files with *.lock extension
 #sort
 sort -bf fileOneTest.txt #sort alphabeticaly
 sort mix.txt
-sort file1.txt file2.txt > file3.txt #margin two documents
+sort file1.txt file2.txt > file3.txt #mergin two documents
 sort #has a lot of options to dig
 
 #STEGANOGRAPHY
