@@ -1,5 +1,7 @@
 #GETHER hardware info
 lscpu
+curl cht.sh/ # supercharged version of this file
+./cht.sh /js+parse+json #if localy 'installed'
 inxi #quick view of the system information
 inxi -G #list grephics drivers 
 lscpu | grep -i mhz
@@ -34,6 +36,7 @@ dmesg -l err
 dmesg | tail -20
 watch "dmesg | tail -20"
 sudo blkid -sUUID #usb drive unique id
+xrandr #list all available resolutions for machine
 
 #password change
 sudo passwd root # in ubuntu
@@ -42,13 +45,15 @@ sudo passwd username #change password for  user
 #HD & MEMORY
 free -m
 sudo fdisk -l
-df -h #df is acronym Disk Free
 lsblk
 lsblk -o NAME,FSTYPE,LABEL,MOUNTPOINT,SIZE,MODEL #short 'by table' info on all drives
 df #without anything
 df -ah #procentage of used space
 df -k #memory usage
 df -i #inode information in output
+df -h #df is acronym Disk Free
+df -m #show percentage
+
 
 #TEST HDD BAD BLOCKS
 upower -i /org/freedesktop/UPower/devices/battery_BAT0  - test battery & hdd health linux
@@ -447,13 +452,13 @@ journalctl -xn
 journalctl -u nginx
 
 
-#LS POWER
+#ls
 ls -1 #show single entry per line
 ls -l #long info
 ls -lt #sort by time modify
 ls -lhS #by size
 ls -a # list all(evrything)
-ls -R #list  Recursively
+ls -R #list with subdirectoies 
 ls --color=auto # colorise
 ls -lh #SIZE OF FILES IN DIRECTORY(THAT ONE IS BETTER!)
 ls -l --block-size=M #SIZE OF FILES IN DIRECTORY
@@ -1212,10 +1217,10 @@ fdisk -l # Display disks partitions sizes and types
 du -ah # Display disk usage for all files and directories in human readable format
 du -sh # Display total disk usage off the current directory
 #lang summary
-sed - when you need to do simple text transforms on files.
-awk - when you only need simple formatting and summarization or transformation of data.
-perl - for almost any task, but especially when the task needs complex regular expressions.
-python - for the same tasks that you could use Perl for.
+sed # when you need to do simple text transforms on files.
+awk # when you only need simple formatting and summarization or transformation of data.
+perl # for almost any task, but especially when the task needs complex regular expressions.
+python # for the same tasks that you could use Perl for.
 
 #Flutter 
 flutter create myapp
