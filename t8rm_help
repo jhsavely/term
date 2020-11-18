@@ -188,7 +188,6 @@ chromium-browser  --proxy-server=192.168.1.220:3128
 
 #Environment VARIABLES
 env
-env | grep PATH
 PATH="/usr/local/exapmle_dir_name/arm/bin:$PATH"
 PATH=/usr/local/Trolltech/Qt-4.8.6/bin:$PATH
 export PATH #export keyword at the end of the hidden .bashrc file 
@@ -196,7 +195,7 @@ export MYVAR=”xyz”
 env | grep MYVAR=
 printenv MYVAR
 echo $PATH
-export PATH=$PATH:directory
+export PATH=$PATH:/path/to/yourr/directory
 source ~/.bashrc #to reload .bashrc file to enable the changes
 
 #encrypt file
@@ -1000,14 +999,10 @@ sudo reboot
 lsb_release -a
 speedtest-cli #test network speed on ookla servers
 
-#download the security key for the Jenkins repository & add it to the keychain
-wget -q -O - https://jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
-# Add the Jenkins sources to apt
-sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
-# Update the list of packages
-sudo apt-get update
-# Install Jenkins (will also install its dependencies, eg OpenJDK)
-sudo apt-get install jenkins
+wget -q -O - https://jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -i #download the security key for the Jenkins repository & add it to the keychain
+sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list' #Add the Jenkins sources to apt
+sudo apt-get update  #Update the list of packages
+sudo apt-get install jenkins #Install Jenkins (will also install its dependencies, eg OpenJDK)
 sudo service jenkins restart
 sudo service jenkins stop
 sudo service jenkins start
@@ -1048,25 +1043,14 @@ last root
 id #user and group ids of your current user.
 last #who have logged onto the system.
 who #Show who is logged into the system.
-w # Show who is logged in and what they are doing.
- # Create a group named "test".
-groupadd test
- # Create an account named john, with a comment of "John Smith" and create the user's home directory.
-useradd -c "John Smith" -m john
-# Delete the john account.
-userdel john
-# Add the john account to the sales group
-usermod -aG sales john
-#5 – FILE AND DIRECTORY COMMANDS
-# List all files in a long listing (detailed) format
-ls -al
-# Create a directory
-mkdir directory
-# Remove (delete) file
-rm file
-# Remove the directory and its contents recursively
-rm -r directory
-# Force removal of file without prompting for confirmation
+w #Show who is logged in and what they are doing.
+groupadd test #Create a group named "test".
+useradd -c "John Smith" -m john #Create an account named john, with a comment of "John Smith" and create the user's home directory.
+userdel john #Delete the john account.
+usermod -aG sales john #Add the john account to the sales group
+rm file #Remove (delete) file
+rm -r directory #Remove the directory and its contents recursively
+#Force removal of file without prompting for confirmation
 rm -f file
 # Forcefully remove directory recursively
 rm -rf directory
