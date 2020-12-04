@@ -92,7 +92,6 @@ iostat
 mpstat
 lscpu
 lspci
-dmidecode
 stat .bash_history #stat on given file, gets info on file
 jobs #list of programs running on the background
 cat /proc/scsi/scsi #info about hdd
@@ -449,6 +448,7 @@ journalctl -f #only new messages as they oocurs
 journalctl --since "30 min ago"
 journalctl -xn
 journalctl -u nginx
+journalctl -b -p err #To display all errors since last boot:
 
 
 #ls
@@ -1024,8 +1024,6 @@ adb start-server
 adb devices
 cd /media/jsavely/Seagate/
 adb backup -apk -noshared -all -f backup-smartfon.adb
-gpg -c fizzBuzz.txt #encrypt file
-gpg fizzBuzz.txt.gpg #decrypt file
 dd if=kali-linux-2017.1-amd64.iso of=/dev/sdb bs=512k #create kali liveISO
 file t8rm.sh #shows info about file
 
@@ -1229,4 +1227,8 @@ source ~/.profile
 tabedit nameOfTheFile.txt #open in a new tab 
 :e %:h/myFileName #create new file from vim command line
 visual select + ~ #toUpperCase or tolowercase
+
+#gpg
+gpg -c fizzBuzz.txt #encrypt file
+gpg fizzBuzz.txt.gpg #decrypt file
 
