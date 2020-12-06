@@ -1232,3 +1232,16 @@ visual select + ~ #toUpperCase or tolowercase
 gpg -c fizzBuzz.txt #encrypt file
 gpg fizzBuzz.txt.gpg #decrypt file
 
+#yocto
+sudo apt update
+sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat cpio python python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 xterm
+git clone git://git.yoctoproject.org/poky
+cd poky/
+git fetch --tags
+git tag
+git checkout yocto-2.6.2
+cd
+source poky/oe-init-build-env
+ls
+time bitbake core-image-minimal
+runqemu qemux86 nographic
