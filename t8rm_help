@@ -620,7 +620,7 @@ export LD_LIBRARY_PATH=.
 sudo fswebcam --verbose #Test If cameras are streaming
 
 #VirtualBox
-VBoxManage sharedfolder add "kubuntu" --name "share" --hostpath "/home/jsavely/share"
+VBoxManage sharedfolder add "kubuntu" --name "share" --hostpath "/home/userNamely/share"
 
 #clock in bash
 watch -n 0.1  time date -R
@@ -637,11 +637,11 @@ watch -n 0.1  time date -R
 	CTRL-L	Очистка экрана терминала
 
 #find
-find . -name tecmint.txt ./tecmint.txt # Find all the files whose name is tecmint.txt in a current working directory.
-find /home -name tecmint.txt #Find all the files under /home directory with name tecmint.txt.
-find /home -iname tecmint.txt #Find all the files whose name is tecmint.txt and contains both capital and small letters in /home directory.
-find / -type d -name Tecmint #Find all directories whose name is Tecmint in / directory.
-find . -type f -name tecmint.php #Find all php files whose name is tecmint.php in a current working directory.
+find . -name myFile.txt ./myFile.txt # Find all the files whose name is myFile.txt in a current working directory.
+find /home -name myFile.txt #Find all the files under /home directory with name myFile.txt.
+find /home -iname fileName.txt #Find all the files whose name is fileName.txt and contains both capital and small letters in /home directory.
+find / -type d -name DirName #Find all directories whose name is DirName in / directory.
+find . -type f -name fileName.php #Find all php files whose name is fileName.php in a current working directory.
 find . -type f -name "*.php" #Find all php files in a directory.
 find . -type f -perm 0777 -print #Find all the files whose permissions are 777.
 find / -type f ! -perm 777 #Find all the files without permission 777.
@@ -653,15 +653,15 @@ find / -perm /u=r #Find all Read Only files.
 find / -perm /a=x #Find all Executable files.
 find / -type f -perm 0777 -print -exec chmod 644 {} \; #Find all 777 permission files and use chmod command to set permissions to 644.
 find / -type d -perm 777 -print -exec chmod 755 {} \; #Find all 777 permission directories and use chmod command to set permissions to 755.
-find . -type f -name "tecmint.txt" -exec rm -f {} \; #To find a single file called tecmint.txt and remove it.
+find . -type f -name "fileName.txt" -exec rm -f {} \; #To find a single file called fileName.txt and remove it.
 find . -type f -name "*.txt" -exec rm -f {} \; #To find and remove multiple files such as .mp3 or .txt, then use.
 find /tmp -type f -empty #To find all empty files under certain path.
 find /tmp -type d -empty #To file all empty directories under certain path.
 find /tmp -type f -name ".*" #To find all hidden files, use below command.
-find / -user root -name tecmint.txt #To find all or single file called tecmint.txt under / root directory of owner root.
-find /home -user tecmint #To find all files that belongs to user Tecmint under /home directory.
+find / -user root -name fileName.txt #To find all or single file called fileName.txt under / root directory of owner root.
+find /home -user fileName #To find all files that belongs to user DirName under /home directory.
 find /home -group developer #To find all files that belongs to group Developer under /home directory.
-find /home -user tecmint -iname "*.txt" #To find all .txt files of user Tecmint under /home directory.
+find /home -user fileName -iname "*.txt" #To find all .txt files of user DirName under /home directory.
 find / -mtime 50 #To find all the files which are modified 50 days back.
 find / -atime 50 #To find all the files which are accessed 50 days back.
 find / -mtime +50 –mtime -100 #To find all the files which are modified more than 50 days back and less than 100 days.
@@ -713,7 +713,7 @@ dpkg -s {package} | grep Status #check if papackage is installed. very useful #e
 dpkg -s lsof | grep Status	#Find out if Debian package is installed or not (status)
 
 mysqldump -Q -c -e -u USER -pPASSWORD DATABASE > /path/to/file/dump.sql
-mysqldump --add-drop-table --databases myDatabaseName > /home/jsavely/backup/db/$(/bin/date +\%Y-\%m-\%d).sql.bak
+mysqldump --add-drop-table --databases myDatabaseName > /home/userName/backup/db/$(/bin/date +\%Y-\%m-\%d).sql.bak
 mysqldump --all-databases --all-routines > /path/to/fulldump.sql
 mysql -u root -p [database_name] < backupName.sql #to restore database
 
@@ -962,9 +962,9 @@ tar cjf file.tar.bz2 # создать архив tar с сжатием Bzip2
 tar xjf file.tar.bz2 # распаковать tar с Bzip2
 gzip file # сжать file и переименовать в file.gz
 gzip -d file.gz # разжать file.gz в file
-tar -tvf staging.tecmint.com.tar.gz #look through contence
-tar -zxvf tecmintbackup.tar.gz tecmintbackup.xml #untar single file
-tar -xvf tecmint-14-09-12.tar "file 1" "file 2" #untar multiple 
+tar -tvf staging.fileName.com.tar.gz #look through contence
+tar -zxvf fileNamebackup.tar.gz fileNamebackup.xml #untar single file
+tar -xvf fileName-14-09-12.tar "file 1" "file 2" #untar multiple 
 
 #random solutions
 wget --spider -S http://google.com #load page
@@ -1051,10 +1051,8 @@ userdel john #Delete the john account.
 usermod -aG sales john #Add the john account to the sales group
 rm file #Remove (delete) file
 rm -r directory #Remove the directory and its contents recursively
-#Force removal of file without prompting for confirmation
-rm -f file
-# Forcefully remove directory recursively
-rm -rf directory
+rm -f file #Force removal of file without prompting for confirmation
+rm -rf directory # Forcefully remove directory recursively
 # Copy file1 to file2
 cp file1 file2
 # Copy source_directory recursively to destination. If destination exists, copy source_directory into destination, otherwise create destination with the contents of source_directory.
