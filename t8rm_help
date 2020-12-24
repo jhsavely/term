@@ -814,7 +814,7 @@ git push origin --delete <branch-name>
 #5. Stash and restore changes
 #How to stash changes in git:
 git stash #Save all local changes
-git stash --patch //Save a specific file via interactive patch mode
+git stash --patch #Save a specific file via interactive patch mode
 #How to restore stashed changes:
 git apply #Preserve changes in the stack
 git stash pop #Discard changes from the stack.
@@ -872,11 +872,11 @@ git rebase --i
 git rebase -i HEAD^^ #step back one commit
 git rebase -i baf8d5e7da9e41fcd37d63ae9483ee0b10bfac8e^ #second way  to do the same
 git log --pretty=format:"%H [%cd]: %an - %s" --graph --date=format:%c  #beutification for git log
-#notes
-ls -al # форматированный список со скрытыми каталогами и файлами
-rm file # удалить file
-rm -r dirName # удалить каталог dirName
-rm -f file # удалить форсированно file
+#basics  notes
+ls -al #list all 
+rm file # remove file 
+rm -r dirName # remove dirName
+rm -f file #force remove file
 rm -rf dirName # удалить форсированно каталог dirName *
 cp file1 file2 # скопировать file1 в file2
 cp -r dirName1 dirName2 # скопировать dirName1 в dirName2; создаст каталог dirName2, если он не существует
