@@ -104,7 +104,7 @@ ps --ppid 1174 #list all the child processes
 ps aux | grep 'Z' #show zombie process
 ps axo pid=,stat= | awk '$2~/^Z/ { print }' #same trick with awk
 ps -ef #will give a full list of processes
-ps -f -u jsavely #all process run by user
+ps -f -u  #all process run by user
 ps -C apache2 #search the processes by their name
 watch -n 1 'ps -e -o pid,uname,cmd,pmem,pcpu --sort=-pmem,-pcpu | head -15' #realtime process view
 ps aux | grep "chrome-stable" #process info
@@ -198,8 +198,8 @@ export PATH=$PATH:/path/to/yourr/directory
 source ~/.bashrc #to reload .bashrc file to enable the changes
 
 #encrypt file
-openssl enc -aes-256-cbc -in /home/jsavely/file1.txt -out /home/jsavely/file1.dat #encrypt
-openssl enc -aes-256-cbc -d -in /home/jsavely/file1.dat > /home/jsavely/file1.txt #decrypt
+openssl enc -aes-256-cbc -in /home//file1.txt -out /home/userName/file1.dat #encrypt
+openssl enc -aes-256-cbc -d -in /home//file1.dat > /home/userName/file1.txt #decrypt
 zip --password xxxxx myfiles.zip file1.txt file2.txt file3.txt #cerates encrypded archive
 unzip myfiles.zip # unzips after password
 
@@ -219,7 +219,7 @@ kill  -9 3546 5557 4242
 #COPY\RIP ISO
 mkisofs -r -o file.iso /dev/dvd
 cat /dev/sr0 > image.iso
-cat /dev/scd0 > /home/jsavely/test.iso
+cat /dev/scd0 > /home//test.iso
 
 
 gedit ~/.bashrc
@@ -244,7 +244,7 @@ sed -i 's/word1/word2/ ; s/word3/word4/' test.txt #search and replace one words 
 aspell #dig theat command
 
 #MOUNT VOLUME
-sudo mount -o loop /media/jsavely/web/iso/kubuntu-15.04-desktop-amd64.iso  /media/iso #command as follows to mount iso file called disk1.iso
+sudo mount -o loop /media//web/iso/kubuntu-15.04-desktop-amd64.iso  /media/iso #command as follows to mount iso file called disk1.iso
 sudo mount /dev/X /media
 umount /mnt #unmount forom mnt
 umount -a #standing in the directory unmount all
@@ -305,7 +305,7 @@ run "wvdial" to connect to the internet
 wvdial connect
 
 #write
-write jsavely pts/9 #write username tty/X
+write  pts/9 #write username tty/X
 ps ax | grep $$ | awk '{ print $2 }' #get current tty
 
 #SPLIT FLAC
@@ -399,7 +399,7 @@ nc 10.48.2.40 1337 #on another machine connect to that port
 
 
 #"VIRUS" CHECK
-jsavely@dell:/home/prj/chkrootkit-0.50$ sudo ./chkrootkit > check4rootkits.txt
+@dell:/home/prj/chkrootkit-0.50$ sudo ./chkrootkit > check4rootkits.txt
 
 #RESTART XFCE
 sudo service lightdm restart
@@ -544,7 +544,7 @@ route add default gw 192.168.1.1
 adb shell pm list packages
 adb shell pm path com.vMEyeSuperHD.ui
 adb pull /data/app/com.vMEyeSuperHD.ui-1/base.apk
-sh /home/jsavely/AndroidStudioProjects/rcd/dex2jar2/d2j-dex2jar.sh /home/jsavely/AndroidStudioProjects/rcd/vMEyeSuper.apk
+sh /home/AndroidStudioProjects/rcd/dex2jar2/d2j-dex2jar.sh /home/userName/AndroidStudioProjects/rcd/vMEyeSuper.apk
 
 #emulator 
 cd /AndroidSDK/.../emulator
@@ -726,7 +726,7 @@ sudo ls -la /root #test if you a sudo-er
 #lsof
 lsof /home #list files in the directory
 kill -9 'lsof -t -u username' #kill all processes for given user
-sudo lsof -u jsavely #files of user
+sudo lsof -u  #files of user
 lsof -i  #network connections
 lsof -i tcp; lsof -i udp; #same for protocols
 lsof -i tcp:8082 #what process is on that port
@@ -734,16 +734,16 @@ lsof -i 4 -a -p 1234 #(просмотр всех соединений IPv4, от
 lsof /dev/hd4 # (Список открытых файлов на устройстве /dev/hd4)
 lsof /dev/cdrom # (Список процессов, работающих с CD ROM)
 lsof -c ssh #Список подключений по ssh
-lsof -u jsavely | wc -l #!!!Files open by user (pentest important)
+lsof -u  | wc -l #!!!Files open by user (pentest important)
 lsof -p 11123 # list files opend by the process(PID)!!!very useful
 
 #slay
-sudo slay jsavely #kill all process for given user
+sudo slay  #kill all process for given user
 
 #md5sum
 md5sum yesTest.txt > sumYesTest.txt #generate hash and save it to the file
-md5sum /bin/* >> /home/jsavely/binCheck # create controll sum for check
-md5sum -c /home/jsavely/etcCheck #check
+md5sum /bin/* >> /home//binCheck # create controll sum for check
+md5sum -c /home//etcCheck #check
 
 #signal - overview of signals
 man 7 signal #all about kill signal numbers
@@ -947,7 +947,7 @@ pgrep -l dbus #find  PID's by a part of the name
 
 #qemu
 qemu-img create -f qcow2 my-image.qcow2 10G
-qemu-system-x86_64 -cdrom /home/jsavely/ubuntu-18.04.1-desktop-amd64.iso my-image.qcow2 -m 2G -enable-kvm
+qemu-system-x86_64 -cdrom /home//ubuntu-18.04.1-desktop-amd64.iso my-image.qcow2 -m 2G -enable-kvm
 qemu-system-x86_64 my-image.qcow2 -m 2G -enable-kvm #if system was installed
 
 #tar
@@ -968,7 +968,7 @@ tar -xvf fileName-14-09-12.tar "file 1" "file 2" #untar multiple
 
 #random solutions
 wget --spider -S http://google.com #load page
-ls /home/jsavely/dumps |wc -l # count files in directory
+ls /home//dumps |wc -l # count files in directory
 sudo chkrootki #check for rootkits
 find /bin -perm -4000 #find all binarys with SUID set
 sed 's/^.\{5\}//g' docker_experement.txt #delete first 5 charachters at the begining of evry line
@@ -1012,7 +1012,7 @@ sudo service jenkins start
 
 #ClamAV scan example
 clamscan -i -r –bell –max-dir-recursion 50 –copy /home/setevoy/Infected/ –log=/var/log/clamav.log /media/1C6A-19CC/
-clamscan -r --bell -i /home/jsavely/Downloads/visample
+clamscan -r --bell -i /home//Downloads/visample
 clamscan -r / #To check all files on the computer, displaying the name of each file
 clamscan -r --bell -i / #check all files, display infected and ring
 clamscan -r -i / & #scan all files but only display infected when found, run in background
@@ -1022,7 +1022,7 @@ clamscan -r --move=/home/USER/VIRUS /home/USER #check files in  USER home dir, m
 #Android backup
 adb start-server
 adb devices
-cd /media/jsavely/Seagate/
+cd /media//Seagate/
 adb backup -apk -noshared -all -f backup-smartfon.adb
 dd if=kali-linux-2017.1-amd64.iso of=/dev/sdb bs=512k #create kali liveISO
 file t8rm.sh #shows info about file
@@ -1039,7 +1039,7 @@ sudo apt update
 sudo apt-get install atom
 
 #who logs into the system
-last jsavely
+last 
 last root
 id #user and group ids of your current user.
 last #who have logged onto the system.
@@ -1215,8 +1215,8 @@ flutter run
 swapoff -a && swapon -a
 
 #setup SDK
-export PATH="$PATH:/home/jsavely/dart/dart-sdk/bin"
-echo 'export PATH="$PATH:/home/jsavely/dart/dart-sdk/bin"' >> ~/.profile
+export PATH="$PATH:/home//dart/dart-sdk/bin"
+echo 'export PATH="$PATH:/home//dart/dart-sdk/bin"' >> ~/.profile
 source ~/.profile
 
 #vim 
@@ -1232,14 +1232,12 @@ gpg fizzBuzz.txt.gpg #decrypt file
 
 #yocto
 sudo apt update
-sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat cpio python python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 xterm
+sudo apt install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat cpio python python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 xterm
 git clone git://git.yoctoproject.org/poky
 cd poky/
 git fetch --tags
 git tag
 git checkout yocto-2.6.2
-cd
 source poky/oe-init-build-env
-ls
 time bitbake core-image-minimal
 runqemu qemux86 nographic
