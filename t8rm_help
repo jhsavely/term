@@ -1,5 +1,6 @@
 #GETHER hardware info
 lscpu
+hostnamectl #short summary
 curl cht.sh/ # supercharged version of this file
 ./cht.sh /js+parse+json #if localy 'installed'
 inxi #quick view of the system information
@@ -28,7 +29,13 @@ xdpyinfo #get info about client display & graph server
 lspci #command : List all PCI devices.
 lshw #command : List all hardware.
 dmidecode #command : List all hardware data from BIOS.
-sudo dmidecode | grep -i speed #RAM frequency?
+dmidecode -s system-manufacturer 
+dmidecode | grep -i speed #RAM frequency?
+dmidecode -s system-product-name
+lshw -c system | grep product | head -1
+cat /sys/class/dmi/id/product_name
+cat /sys/class/dmi/id/sys_vendor
+cat /proc/cmdline #show kernel that is currently used and partition booted from
 ifconfig #command : Outdated network config utility.
 ip #command : Recommended new network config utility.
 modinfo 'lshw -c video | awk '/configuration: driver/{print $2}' | cut -d= -f2' #discover videodriver 
@@ -37,6 +44,7 @@ dmesg | tail -20
 watch "dmesg | tail -20"
 sudo blkid -sUUID #usb drive unique id
 xrandr #list all available resolutions for machine
+hdparm -Tt /dev/sda #hard drive speed in Mb/s
 
 #password change
 sudo passwd root # in ubuntu
@@ -507,12 +515,10 @@ ssh -t remote_host screen -r
 knock <host> 3000 4000 5000 && ssh -p <port> user@host && knock <host> 5000 4000 3000
 #establish a remote Gnu screen session
 ssh -t user@some.domain.com /usr/bin/screen -xRR
-
 ssh-keygen #generate key
 ssh-keygen -b 4096
 ssh-copy-id username@remote_host
 ssh username@remote_IP_host
-
 
 #(AMD PROP DRIV)fglrxinfo
 watch aticonfig --odgt
@@ -1052,13 +1058,10 @@ usermod -aG sales john #Add the john account to the sales group
 rm file #Remove (delete) file
 rm -r directory #Remove the directory and its contents recursively
 rm -f file #Force removal of file without prompting for confirmation
-rm -rf directory # Forcefully remove directory recursively
-# Copy file1 to file2
-cp file1 file2
-# Copy source_directory recursively to destination. If destination exists, copy source_directory into destination, otherwise create destination with the contents of source_directory.
-cp -r source_directory destination
-# Rename or move file1 to file2. If file2 is an existing directory, move file1 into directory file2
-mv file1 file2
+rm -rf directory #Forcefully remove directory recursively
+cp file1 file2 #Copy file1 to file2
+cp -r source_directory destination #Copy source_dir recursively to dest. If dest exists, copy source_dir into dest, otherwise create dest cont of source_dir.
+mv file1 file2 #Rename or move file1 to file2. If file2 is an existing directory, move file1 into directory file2
 # Create symbolic link to linkname
 ln -s /path/to/file linkname
 # Create an empty file or update the access and modification times of file.
@@ -1232,7 +1235,8 @@ gpg fizzBuzz.txt.gpg #decrypt file
 
 #yocto
 sudo apt update
-sudo apt install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat cpio python python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 xterm
+sudo apt install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat cpio python python3 python3-pip python3-pexpect xz-utils 
+debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 xterm
 git clone git://git.yoctoproject.org/poky
 cd poky/
 git fetch --tags
