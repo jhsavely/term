@@ -1,4 +1,4 @@
-#GETHER hardware info
+#gather hardware info
 lscpu
 hostnamectl #short summary
 curl cht.sh/ # supercharged version of this file
@@ -45,6 +45,10 @@ watch "dmesg | tail -20"
 sudo blkid -sUUID #usb drive unique id
 xrandr #list all available resolutions for machine
 hdparm -Tt /dev/sda #hard drive speed in Mb/s
+
+#diagnose problems
+sudo systemctl --failed 
+sudo journalctl -b0 -p4
 
 #password change
 sudo passwd root # in ubuntu
@@ -457,7 +461,7 @@ journalctl --since "30 min ago"
 journalctl -xn
 journalctl -u nginx
 journalctl -b -p err #To display all errors since last boot:
-
+journalctl -b > journal"$(date +%d%m%y)" #save journal form bootup adding current date
 
 #ls
 ls -1 #show single entry per line
@@ -1226,6 +1230,8 @@ source ~/.profile
 :%s/serchWord/ReplaceWord #serch and replace
 :%s/serchWord/ReplaceWord/g #serch and replace globaly
 tabedit nameOfTheFile.txt #open in a new tab 
+gt #switch tab forward
+gT #tab backward
 :e %:h/myFileName #create new file from vim command line
 visual select + ~ #toUpperCase or tolowercase
 
@@ -1245,3 +1251,15 @@ git checkout yocto-2.6.2
 source poky/oe-init-build-env
 time bitbake core-image-minimal
 runqemu qemux86 nographic
+
+#hexdump 
+hd -v docker_help #best way in konsole
+
+#uwf
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw status verbose #see the rules that are set
+sudo ufw allow http
+sudo ufw allow 80
+
+
