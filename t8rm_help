@@ -49,23 +49,28 @@ hdparm -Tt /dev/sda #hard drive speed in Mb/s
 #diagnose problems
 sudo systemctl --failed 
 sudo journalctl -b0 -p4
+faillog -a #all
+journalctl -b -1 #log of previous boot
+journalctl -b caf0524a1d394ce0bdbcff75b94444fe #show particular log
+
 
 #password change
 sudo passwd root # in ubuntu
 sudo passwd username #change password for  user
 
-#HD & MEMORY
+#HDD|SSD|NVME & RAM
 free -m
-sudo fdisk -l
-lsblk
+sudo fdisk -l #list drives
+lsblk #list block devices
 lsblk -o NAME,FSTYPE,LABEL,MOUNTPOINT,SIZE,MODEL #short 'by table' info on all drives
 df #without anything
 df -ah #procentage of used space
 df -k #memory usage
 df -i #inode information in output
-df -h #df is acronym Disk Free
-df -m #show percentage
-
+df -h #df is acronym to Disk Free
+df -m #shows percentage
+sudo nvme list #lists all devices	
+sudo nvme error-log /dev/nvme0n1
 
 #TEST HDD BAD BLOCKS
 upower -i /org/freedesktop/UPower/devices/battery_BAT0  - test battery & hdd health linux
@@ -455,13 +460,17 @@ systemctl enable unit-name
 systemctl disable unit-name
 systemctl daemon-reload
 journalctl -b #all msg from the moment of loading
-journalctl --since="2012-10-30 18:17:16"
+journalctl --since="2012-10-30 18:17:16" #particular date and time
+journalctl --since "2015-01-10" --until "2015-01-11 03:00" #time window 
+journalctl --since yesterday # fiun option
+journalctl --since 09:00 --until "1 hour ago" 
 journalctl -f #only new messages as they oocurs
 journalctl --since "30 min ago"
 journalctl -xn
-journalctl -u nginx
-journalctl -b -p err #To display all errors since last boot:
+journalctl -u nginx.service #particular service 
+journalctl -p err -b -1 # display all errors since last boot
 journalctl -b > journal"$(date +%d%m%y)" #save journal form bootup adding current date
+journalctl -k -b -1 # kernel log from previous boot
 
 #ls
 ls -1 #show single entry per line
