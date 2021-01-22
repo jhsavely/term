@@ -69,8 +69,9 @@ df -k #memory usage
 df -i #inode information in output
 df -h #df is acronym to Disk Free
 df -m #shows percentage
-sudo nvme list #lists all devices	
-sudo nvme error-log /dev/nvme0n1
+nvme list #lists all devices	
+nvme error-log /dev/nvme0n1
+nvme smart-log /dev/nvme0 
 
 #TEST HDD BAD BLOCKS
 upower -i /org/freedesktop/UPower/devices/battery_BAT0  - test battery & hdd health linux
@@ -471,6 +472,8 @@ journalctl -u nginx.service #particular service
 journalctl -p err -b -1 # display all errors since last boot
 journalctl -b > journal"$(date +%d%m%y)" #save journal form bootup adding current date
 journalctl -k -b -1 # kernel log from previous boot
+journalctl --vacuum-time=1years #delete log 1 year old
+journalctl -u apache2.service -r -o json-pretty #prints logs from the Apache web server in json-pretty format
 
 #ls
 ls -1 #show single entry per line
@@ -891,6 +894,7 @@ git rebase --i
 git rebase -i HEAD^^ #step back one commit
 git rebase -i baf8d5e7da9e41fcd37d63ae9483ee0b10bfac8e^ #second way  to do the same
 git log --pretty=format:"%H [%cd]: %an - %s" --graph --date=format:%c  #beutification for git log
+git log --all --graph --oneline --decorate #trick for graphical display branches
 #basics  notes
 ls -al #list all 
 rm file # remove file 
