@@ -1,4 +1,4 @@
-#gather hardware info
+#gather hardware info  
 lscpu
 hostnamectl #short summary
 curl cht.sh/ # supercharged version of this file
@@ -732,6 +732,8 @@ adduser username #createuser
 usermod -aG sudo username #add the user to the sudo group
 su - username # switch to the new user account
 sudo ls -la /root #test if you a sudo-er
+groups jsavely #all groups that user is into
+id jsavely #list all goroups of user with id of groups
 
 #lsof
 lsof /home #list files in the directory
@@ -1263,5 +1265,18 @@ sudo ufw default allow outgoing
 sudo ufw status verbose #see the rules that are set
 sudo ufw allow http
 sudo ufw allow 80
+
+#esp32
+sudo usermod -a -G dialout $USER #add current user to group of ttyUSB users
+
+
+#crank app 
+
+cd into pom.xml
+mvn clean package
+jar-file will be generated example: SpringBootRestService-1.0.jar
+cd target
+java -jar SpringBootRestService-1.0.jar
+http://localhost:8080/payment
 
 
